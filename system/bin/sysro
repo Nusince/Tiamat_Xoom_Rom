@@ -1,0 +1,1 @@
+mount -o ro,remount dev/block/platform/sdhci-tegra.3/mmcblk1p8 /system
