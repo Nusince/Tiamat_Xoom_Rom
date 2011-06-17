@@ -39,12 +39,13 @@ ui_print(" ");
 ui_print(" ");
 ui_print(" ");
 ui_print("Flashing Kernel ...");
-package_extract_dir("kernel", "/tmp");
-set_perm(0, 0, 0777, "/tmp/dd");
+package_extract_dir("resources", "/tmp");
+set_perm(0, 0, 0777, "/tmp/busybox");
 set_perm(0, 0, 0777, "/tmp/mkbootimg.sh");
 set_perm(0, 0, 0777, "/tmp/mkbootimg");
 set_perm(0, 0, 0777, "/tmp/unpackbootimg");
-run_program("/tmp/dd", "if=/dev/block/mmcblk1p7", "of=/tmp/boot.img");
+set_perm(0, 0, 0777, "/tmp/install_build.prop.sh");
+run_program("/tmp/busybox", "dd", "if=/dev/block/mmcblk1p7", "of=/tmp/boot.img");
 run_program("/tmp/unpackbootimg", "/tmp/boot.img", "/tmp/");
 run_program("/tmp/mkbootimg.sh");
 run_program("/tmp/dd", "if=/tmp/newboot.img", "of=/dev/block/mmcblk1p7");
@@ -55,6 +56,7 @@ ui_print(" ");
 ui_print(" ");
 ui_print("Installing Tiamat Xoom Rom... ");
 package_extract_dir("system", "/system");
+assert(run_program("/tmp/install_build.prop.sh"));
 symlink("busybox", "/system/xbin/[", "/system/xbin/[[",
         "/system/xbin/arp", "/system/xbin/ash", "/system/xbin/awk",
         "/system/xbin/basename", "/system/xbin/bbconfig", "/system/xbin/brctl",
