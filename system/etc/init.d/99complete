@@ -1,4 +1,0 @@
-#!/system/bin/sh
-
-sync;
-setprop hc.filesystem.ready 1;

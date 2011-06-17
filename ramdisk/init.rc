@@ -478,6 +478,6 @@ service dumpstate /system/bin/dumpstate -s
     oneshot
 	
 # Execute files in /etc/init.d before booting (requires busybox)
-service sysinit /system/bin/logwrapper /system/xbin/busybox run-parts /system/etc/init.d
+service sysinit /system/bin/sysinit
     disabled
     oneshot
